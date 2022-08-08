@@ -6,12 +6,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="index.js"></script>
-    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <h1>Sup loser</h1>
+    <script>
+
+        if ('geolocation' in navigator) {
+            console.log("geolocation available");
+            navigator.geolocation.getCurrentPosition(position => {
+                const lat = position.coords.latitude;
+                const lon = position.coords.longitude;
+                const data = { lat, lon };
+
+                const options = {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }
+
+                fetch('/api', options)
+
+            })
+
+        }
+        else {
+            console.log("geolocation  not available");
+        }
+
+
+    </script>
+
+
+    <h1>Data Selfie App</h1>
+
+    <p>Hello!</p>
 </body>
 
 </html>
