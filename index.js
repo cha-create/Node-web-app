@@ -14,6 +14,8 @@ app.post('/api', (request, response) => {
     const data = request.body;
     const lat = data.lat;
     const lon = data.lon;
+    const name = data.name;
+    console.log(name);
     const timestamp = Date.now();
     data.timestamp = timestamp;
     database.insert(data);
@@ -22,7 +24,8 @@ app.post('/api', (request, response) => {
         status: 'success',
         receivedLatitude: lat,
         receivedLongitude: lon,
-        timestamp: timestamp
+        timestamp: timestamp,
+        receivedName: name
 
     })
 })

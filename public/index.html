@@ -16,13 +16,14 @@
                 navigator.geolocation.getCurrentPosition(async position => {
                     const lat = position.coords.latitude;
                     const lon = position.coords.longitude;
+                    const name = document.getElementById('name').value;
                     console.log(lat);
                     console.log(lon);
-                    const location = { lat, lon };
+                    const sendData = { lat, lon, name };
 
                     const options = {
                         method: 'POST',
-                        body: JSON.stringify(location),
+                        body: JSON.stringify(sendData),
                         headers: {
                             'Content-Type': 'application/json'
                         }
@@ -44,6 +45,7 @@
 
 
     <h1>BIG BOI HEADER</h1>
+    <input type="text" id="name">
     <button onclick="getLocation()">Submit</button>
 
     <br>
