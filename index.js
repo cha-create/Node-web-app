@@ -1,3 +1,4 @@
+const { json } = require('body-parser');
 const express = require('express');
 const app = express();
 const Datastore = require('nedb');
@@ -10,7 +11,7 @@ database.loadDatabase();
 
 
 app.post('/api', (request, response) => {
-    console.log('request received');
+    console.log('post request received');
     const data = request.body;
     const lat = data.lat;
     const lon = data.lon;
@@ -27,5 +28,21 @@ app.post('/api', (request, response) => {
         timestamp: timestamp,
         receivedName: name
 
+    })
+})
+
+app.post('/api/query', (request, response) => {
+    console.log('query request received');
+    const data = request.body;
+    const query = data.name;
+    console.log(query);
+
+    database.find({ name: `${query}` }, (err, data) => {
+        if (err) {
+            response.end();
+            return;
+        }
+        console.log(`Response sent. Contents: ${JSON.stringify(data)}`);
+        response.json({ receivedQuery: query, queriedObjects: data });
     })
 })

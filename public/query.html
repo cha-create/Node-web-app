@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Query</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Insert database search query</h1>
+    <a href="index.html">Return to home</a>
+    <hr>
+    <br>
+    <input type="text" id="query">
+    <button id="submitButton" onclick="sendQuery()">Submit</button>
+    <div class="queries">
+        <p id="queryText">The query results will show up here.</p>
+    </div>
+
+    <script>
+        async function sendQuery() {
+            const query = document.getElementById('query').value;
+            const sendData = { name: `${query}` };
+            const options = {
+                method: 'POST',
+                body: JSON.stringify(sendData),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
+
+            const response = await fetch('/api/query', options);
+            const data = await response.json();
+            document.getElementById('queryText').innerHTML = JSON.stringify(data);
+
+            console.log(data);
+
+
+        }
+    </script>
+</body>
+
+</html>
