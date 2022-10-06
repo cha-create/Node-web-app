@@ -6,9 +6,79 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="database.css">
 </head>
 
 <body>
+    <h1>Homepage</h1>
+    <a href="query.html">Query info from database</a>
+    <hr>
+    <br>
+    <div class="all">
+        <div class="logdb">
+            <h2>Log to database</h2>
+            <div class="logdb-content">
+                <input type="text" id="name">
+                <button onclick="getLocation()" id="logButton">Submit</button>
+            </div>
+        </div>
+
+        <div class="getdb">
+            <h2>Full Database</h2>
+            <hr>
+            <table>
+                <tr>
+                    <th>Latitude</th>
+                    <th>longitude</th>
+                    <th>Name</th>
+                    <th>Timestamp</th>
+                </tr>
+                <tbody id="rows">
+
+                </tbody>
+            </table>
+            <button onclick="getDataBase()" id="refreshButton">Refresh</button>
+        </div>
+
+        <br>
+    </div>
+
+    <script>
+        let rowNumber = 0;
+        async function getDataBase() {
+            const response = await fetch('/api/get');
+            const data = await response.json();
+            for (let i = 0; i < data.length; i++) {
+                const row = document.createElement("tr");
+                row.setAttribute('id', `row ${rowNumber}`);
+                const nodule1 = document.createElement('td');// r/programminghorror
+                const nodule2 = document.createElement('td');
+                const nodule3 = document.createElement('td');
+                const nodule4 = document.createElement('td');
+                const text1 = document.createTextNode(data[rowNumber].lat);
+                const text2 = document.createTextNode(data[rowNumber].lon);
+                const text3 = document.createTextNode(data[rowNumber].name);
+                const text4 = document.createTextNode(data[rowNumber].timestamp);
+                nodule1.appendChild(text1);
+                nodule2.appendChild(text2);
+                nodule3.appendChild(text3);
+                nodule4.appendChild(text4);
+                row.appendChild(nodule1);
+                row.appendChild(nodule2);
+                row.appendChild(nodule3);
+                row.appendChild(nodule4);
+
+
+                document.getElementById('rows').appendChild(row);
+                console.log("yeet")
+                rowNumber++;
+
+            };
+
+        }
+
+        getDataBase();
+    </script>
     <script>
         function getLocation() {
             if ('geolocation' in navigator) {
@@ -42,16 +112,6 @@
             }
         }
     </script>
-
-
-    <h1>Log to database</h1>
-    <a href="query.html">Query info from database</a>
-    <hr>
-    <br>
-    <input type="text" id="name">
-    <button onclick="getLocation()">Submit</button>
-
-    <br>
 </body>
 
 </html>

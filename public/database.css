@@ -1,0 +1,100 @@
+table,
+th {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+th {
+    padding: 5px;
+    background-color: lightblue;
+}
+
+td {
+    padding: 5px;
+    border: 1px solid black;
+}
+
+h1 {
+    margin: 5px;
+}
+
+a {
+    margin: 5px;
+}
+
+.all {
+    display: flex;
+    flex-direction: row;
+}
+
+table {
+    margin-right: 0px;
+    position: relative;
+    left: 7%;
+}
+
+button {
+    display: block;
+    background-color: black;
+    border-radius: 15px;
+    color: white;
+    padding: 10px;
+}
+
+.getdb {
+    margin-left: 100px;
+    background-color: gray;
+    width: 20%;
+    padding-bottom: 50px;
+    padding-right: 0%;
+    border-radius: 15px;
+
+}
+
+#refreshButton {
+    position: relative;
+    left: 39%;
+    margin: 0%;
+    margin-top: 10px;
+}
+
+.getdb h2 {
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.logdb {
+    margin-left: 50px;
+    border-radius: 15px;
+    background-color: gray;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.logdb h2 {
+    padding: 15px;
+    padding-top: 0%;
+}
+
+.logdb-content {
+    position: relative;
+    top: 10px;
+    align-items: center;
+}
+
+#logButton {
+    margin-left: 32.5%;
+    margin-top: 15px;
+}
+
+.logdb-content input {
+    margin-left: 10px;
+}
+
+.queries {
+    border: 1px solid gray;
+    border-radius: 15px;
+    background-color: lightgray;
+    width: 25%;
+    padding: 50px;
+    margin-top: 20px;
+}

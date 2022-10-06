@@ -46,3 +46,16 @@ app.post('/api/query', (request, response) => {
         response.json({ receivedQuery: query, queriedObjects: data });
     })
 })
+
+app.get('/api/get', (request, response) => {
+    console.log("database request received");
+    database.find({}, (err, data) => {
+        if (err) {
+            response.end();
+            console.log(err);
+        }
+        response.json(data);
+    })
+
+
+})
